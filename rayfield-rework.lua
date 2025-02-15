@@ -22,7 +22,7 @@ local ConfigurationExtension = ".rfld"
 local settingsTable = {
 	General = {
 		-- if needs be in order just make getSetting(name)
-		rayfieldOpen = {Type = 'bind', Value = 'RightShift', Name = 'Rayfield Keybind'},
+		rayfieldOpen = {Type = 'bind', Value = 'Insert', Name = 'Bind'},
 		-- buildwarnings
 		-- rayfieldprompts
 
@@ -50,16 +50,16 @@ local function loadSettings()
 	
 	local success, result =	pcall(function()
 		task.spawn(function()
-			if isfolder and isfolder(RayfieldFolder) then
-				if isfile and isfile(RayfieldFolder..'/settings'..ConfigurationExtension) then
-					file = readfile(RayfieldFolder..'/settings'..ConfigurationExtension)
+			if isfolder and isfolder(Folder) then
+				if isfile and isfile(Folder..'/settings'..ConfigurationExtension) then
+					file = readfile(Folder..'/settings'..ConfigurationExtension)
 				end
 			end
 
 			-- for debug in studio
 			if useStudio then
 				file = [[
-		{"General":{"rayfieldOpen":{"Value":"K","Type":"bind","Name":"Rayfield Keybind","Element":{"HoldToInteract":false,"Ext":true,"Name":"Rayfield Keybind","Set":null,"CallOnChange":true,"Callback":null,"CurrentKeybind":"K"}}},"System":{"usageAnalytics":{"Value":false,"Type":"toggle","Name":"Anonymised Analytics","Element":{"Ext":true,"Name":"Anonymised Analytics","Set":null,"CurrentValue":false,"Callback":null}}}}
+		{"General":{"Open":{"Value":"K","Type":"bind","Name":" Keybind","Element":{"HoldToInteract":false,"Ext":true,"Name":" Keybind","Set":null,"CallOnChange":true,"Callback":null,"CurrentKeybind":"K"}}},"System":{"usageAnalytics":{"Value":false,"Type":"toggle","Name":"Anonymised Analytics","Element":{"Ext":true,"Name":"Anonymised Analytics","Set":null,"CurrentValue":false,"Callback":null}}}}
 	]]
 			end
 
@@ -98,7 +98,7 @@ local function loadSettings()
 	
 	if not success then 
 		if writefile then
-			warn('Rayfield had an issue accessing configuration saving capability.')
+			warn(' had an issue accessing configuration saving capability.')
 		end
 	end
 end
@@ -117,7 +117,7 @@ end
 --	local fileFunctionsAvailable = isfile and writefile and readfile
 
 --	if not fileFunctionsAvailable and not useStudio then
---		warn('Rayfield Interface Suite | Sirius Analytics:\n\n\nAs you don\'t have file functionality with your executor, we are unable to save whether you want to opt in or out to analytics.\nIf you do not want to take part in anonymised usage statistics, let us know in our Discord at sirius.menu/discord and we will manually opt you out.')
+--		warn(' Interface Suite | Sirius Analytics:\n\n\nAs you don\'t have file functionality with your executor, we are unable to save whether you want to opt in or out to analytics.\nIf you do not want to take part in anonymised usage statistics, let us know in our Discord at sirius.menu/discord and we will manually opt you out.')
 --		analytics = true	
 --	else
 --		prompt.create(
@@ -152,10 +152,10 @@ if not requestsDisabled then
 				end)
 				if success and reporter then
 					pcall(function()
-						reporter.report("Rayfield", Release, InterfaceBuild)
+						reporter.report("", Release, InterfaceBuild)
 					end)
 				else
-					warn("Failed to load or execute the reporter. \nPlease notify Rayfield developers at sirius.menu/discord.")
+					warn("Failed to load or execute the reporter. \nPlease notify  developers at sirius.menu/discord.")
 				end
 			end)
 			if debugX then warn('Finished Report') end
@@ -1084,7 +1084,7 @@ local function Hide(notify: boolean?)
 		if useMobilePrompt then 
 			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = "The interface has been hidden, you can unhide the interface by tapping 'Show Rayfield'.", Duration = 7, Image = 4400697855})
 		else
-			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = `The interface has been hidden, you can unhide the interface by tapping {settingsTable.General.rayfieldOpen.Value or 'K'}.`, Duration = 7, Image = 4400697855})
+			RayfieldLibrary:Notify({Title = "Interface Hidden", Content = `The interface has been hidden, you can unhide the interface by tapping {settingsTable.General.rayfieldOpen.Value or 'Insert'}.`, Duration = 7, Image = 4400697855})
 		end
 	end
 
@@ -1492,7 +1492,7 @@ function RayfieldLibrary:CreateWindow(Settings)
 	LoadingFrame.Subtitle.Text = Settings.LoadingSubtitle or "Interface Suite"
 
 	if Settings.LoadingTitle ~= "Rayfield Interface Suite" then
-		LoadingFrame.Version.Text = "Rayfield UI"
+		LoadingFrame.Version.Text = "ph4smo.club"
 	end
 
 	if Settings.Icon and Settings.Icon ~= 0 and Topbar:FindFirstChild('Icon') then
@@ -1542,9 +1542,9 @@ function RayfieldLibrary:CreateWindow(Settings)
 			while true do
 				task.wait(math.random(180, 600))
 				RayfieldLibrary:Notify({
-					Title = "Rayfield Interface",
-					Content = "Enjoying this UI library? Find it at sirius.menu/discord",
-					Duration = 7,
+					Title = "ph4smo.club",
+					Content = "Enjoying this script? Go to discord! dsc.gg/ph4smoclub,
+					Duration = 5,
 					Image = 4370033185,
 				})
 			end
